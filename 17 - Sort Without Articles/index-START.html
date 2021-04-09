@@ -48,6 +48,16 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+function delPrefix(bands) {
+  return bands.replace(/^(a |the |an )/i, '').trim(); // replace a, the, an to an empty string, remove whitespace by trim()
+}
+
+const sortBands = bands.sort((a,b) => delPrefix(a) > delPrefix(b) ? 1 : -1); // sort alphabetically
+
+document.querySelector('#bands').innerHTML = 
+  sortBands
+    .map(band => `<li>${band}</li>`)  // map() create new array, The result is that each element in the array is the return value after calling the provided function once
+    .join(''); //join('') all elements are joined without any characters in between them
 
 </script>
 
