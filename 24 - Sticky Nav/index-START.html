@@ -54,6 +54,24 @@
   </div>
 
 <script>
+  const nav =  document.querySelector('#main');
+  const topOfNav  = nav.offsetTop;
+
+  function fixNav() {
+    /* Add a class to the navigation bar when the scrolling distance exceeds the switching point, 
+    the style written later in CSS will override the style written first */
+    if (window.scrollY >= topOfNav) {       //how far we scroll vertically
+      document.body.classList.add('fixed-nav');
+      document.body.style.paddingTop = nav.offsetHeight + 'px'; // add space when the nav bar becomes fixed
+    } else {
+      /* When the scrolling distance is less than the switching point, 
+      restore the positioning style of the navigation bar */
+      document.body.classList.remove('fixed-nav');
+      document.body.style.paddingTop = 0;
+    }
+  }
+
+  window.addEventListener('scroll',  fixNav);
 
 </script>
 
