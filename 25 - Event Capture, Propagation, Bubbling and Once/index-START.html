@@ -42,7 +42,20 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e)  {
+    console.log(this.classList.value);
+    e.stopPropagation(); // stop bubbling this event up
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: true, // one -> two -> three
+    once: true // once triger once
+  }));
+
+//  if we set e.stopPropagation() in the listener and capture: true, the final result is one.
+//  e.stopPropagation() and capture: false, result is three.
 </script>
 </body>
 </html>
